@@ -1,9 +1,11 @@
+
+from __init__ import *
 from Person import * 
 import tkinter as tk
-from sys import argv,exit
+from sys import argv
 
 '''
-python main.py users.csv data.csv
+python main.py ../bin/users.csv ../bin/data.csv
 '''
 def main():
     if len(argv) != 3:
@@ -12,7 +14,19 @@ def main():
     
     users,data = argv[1],argv[2]
 
-    
+    userIn = startmenu()
+    match userIn:
+        case 1:
+            login(users)
+        case 2:
+            register(users)
+        case _:
+            
+
+    # username = input("Name: ")
+    # passw = input("Pass: ")
+    # login(users,username,passw)
+    # register(users)
     
     
     # window = tk.Tk()
