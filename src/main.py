@@ -7,7 +7,7 @@ from sys import argv
 '''
 python main.py ../bin/users.csv ../bin/data.csv
 '''
-def main():
+def main() -> None:
     if len(argv) != 3:
         print(" MISSING FILES ARGS ".center(30,'='))
         exit(1)
@@ -16,19 +16,21 @@ def main():
 
     userIn = startmenu()
     match userIn:
-        case 1:
-            login(users)
-        case 2:
+        case 0:
+            print("Too many invalid entries..exiting")
+            exit(0)
+        case '1':
+            # login(users)
+            print("LOGIN")
+        case '2':
             register(users)
+            print("REGISTER")
         case _:
-            
+            print("EXIT")
+            # exit(0)
 
-    # username = input("Name: ")
-    # passw = input("Pass: ")
-    # login(users,username,passw)
-    # register(users)
     
-    
+    # exit(0)
     # window = tk.Tk()
     # window.title("MAIN WINDOW")
 

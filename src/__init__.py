@@ -1,7 +1,23 @@
+from time import sleep
+
 
 def startmenu() -> int:
-    print("1_Login\n2_Register")
-    return input()
+    print("\n(1) Login",
+          "(2) Register")
+
+    for i in range(0,4):
+        try:
+            num = input("> ")
+            int_error = None
+        except Exception as err:
+            int_error = int(err)
+        
+        if int_error:
+            sleep(2)
+        else:
+            break
+
+    return num
 
 
 def register(filename: str) -> None:
