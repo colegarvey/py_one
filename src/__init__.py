@@ -1,49 +1,48 @@
-from time import sleep
+import csv
 
 
-def startmenu() -> int:
+def startmenu():
     print("\n(1) Login",
-          "(2) Register")
-
-    for i in range(0,4):
-        try:
-            num = input("> ")
-            int_error = None
-        except Exception as err:
-            int_error = int(err)
-        
-        if int_error:
-            sleep(2)
-        else:
-            break
-
-    return num
+          "(2) Register",
+          "(Q) Exit")
+    
+    user_in = input("> ")[0] # take only the first character
+    if user_in in "12":
+        return user_in
+    elif user_in in "Qq":
+        return None
+    else:
+        return "input_err"
 
 
-def register(filename: str) -> None:
+def register(filename: str) -> bool:
     try:
-        username = input("Name: ")
-        key = input("password: ")
+        append_file = open(filename,'a')
     except:
         print("Unable to open file")
+        return False
     else:
         # 'with' will close file after execution finishes
-        with open(filename,'a') as file:
+        username = input("Name: ")
+        key = input("Password: ")
+        with append_file as file:
             file.write("{0},{1}\n".format(username,key))
-        
-    return
+        print(" ACCOUNT CREATED ".center(25,'='))
+        return True
 
 
 def login(filename: str) -> bool:
     try:
-        username = input("Name: ")
-        key = input("password: ")
+        read_file = open(filename,'r')
     except:
         print("Credentials could not be checked")
-        return False
+        return (False,-1)
     else:
-        found = False
-        with open(filename,'r') as file:
-            print(file.read())
-
-        return found
+        username = input("Name: ")
+        key = input("Password: ")
+        with read_file as file:
+            data = csv.reader(file,delimiter=',')
+            for line in data:
+                if line[0] == username and line[1] == key:
+                    return (True,line[2])
+        return (False,-1)
