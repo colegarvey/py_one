@@ -1,5 +1,6 @@
 import csv
-
+from random import randint
+import Person
 
 def startmenu():
     print("\n(1) Login",
@@ -26,7 +27,7 @@ def register(filename: str) -> bool:
         username = input("Name: ")
         key = input("Password: ")
         with append_file as file:
-            file.write("{0},{1}\n".format(username,key))
+            file.write("{0},{1},{2}\n".format(username,key,randint(1,999)))
         print(" ACCOUNT CREATED ".center(25,'='))
         return True
 
@@ -46,3 +47,20 @@ def login(filename: str) -> bool:
                 if line[0] == username and line[1] == key:
                     return (True,line[2])
         return (False,-1)
+
+
+def getData(filename,user_id: str) -> None:
+    try:
+        read_file = open(filename,'r')
+    except:
+        print("ERR ACCESSING DATA")
+    else:
+        with read_file as file:
+            data = csv.reader(file,delimiter=',')
+            for line in data:
+                if line[0] != user_id:
+                    continue
+                else:
+                    user_data = line
+        print(user_data)
+        

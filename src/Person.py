@@ -1,11 +1,12 @@
-
+from random import randint
 
 class Person:
 
-    def __init__(self,name="User",height=0,weight=0):
+    def __init__(self,name="User",height=0,weight=0,id=randint(1,999)):
         self._name = name
         self._height = height
         self._weight = weight
+        self._id = id
 
     @property
     def name(self):
@@ -26,3 +27,6 @@ class Person:
             raise TypeError("Must be decimal height in inches")
         self._height = setheight
         print(" HEIGHT SAVED ".center(20,'='))
+
+    def id(self):
+        return self._id
