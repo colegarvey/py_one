@@ -49,7 +49,7 @@ def login(filename: str) -> bool:
         return (False,-1)
 
 
-def getData(filename,user_id: str) -> None:
+def getData(filename,user_id: str):
     try:
         read_file = open(filename,'r')
     except:
@@ -62,5 +62,8 @@ def getData(filename,user_id: str) -> None:
                     continue
                 else:
                     user_data = line
-        print(user_data)
+        if user_data:
+            return Person.Person(user_id,weight=user_data[1:])
+        else:
+            return None
         

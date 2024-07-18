@@ -30,11 +30,8 @@ def main() -> None:
                 exit(0)
         sleep(1)
     
-    # if authenticated:
-    #     print("User is authed")
-
-    print(user_id)
-    getData(argv[2],user_id)
+    p1 = getData(argv[2],user_id)
+    print(p1._weight)
 
 
     # window = tk.Tk()

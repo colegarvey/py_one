@@ -2,12 +2,15 @@ from random import randint
 
 class Person:
 
-    def __init__(self,name="User",height=0,weight=0,id=randint(1,999)):
+    def __init__(self,id=randint(1,999),name="User",height=0,weight=[]):
+        self._id = id
         self._name = name
         self._height = height
         self._weight = weight
-        self._id = id
-
+        
+    def id(self):
+        return self._id
+    
     @property
     def name(self):
         return self._name
@@ -28,5 +31,8 @@ class Person:
         self._height = setheight
         print(" HEIGHT SAVED ".center(20,'='))
 
-    def id(self):
-        return self._id
+    def weight(self):
+        return self._weight
+    
+    def addWeight(self,weight):
+        self._weight.append(weight)
