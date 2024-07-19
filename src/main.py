@@ -31,7 +31,7 @@ def main() -> None:
         sleep(1)
     
     p1 = getData(argv[2],user_id)
-    print(p1._weight)
+    print(p1)
 
 
     # window = tk.Tk()

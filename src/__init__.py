@@ -63,7 +63,8 @@ def getData(filename,user_id: str):
                 else:
                     user_data = line
         if user_data:
-            return Person.Person(user_id,weight=user_data[1:])
+            # ignore user id, turn weight values to float and return list of values
+            return list(map(float,user_data[1:]))
         else:
             return None
         
